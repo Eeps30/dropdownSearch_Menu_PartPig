@@ -3,6 +3,7 @@ import MakeDropDown from './makeDropdown';
 import ModelDropDown from './modelDropdown';
 import YearDropDown from './yearDropdown';
 import data from './partsList';
+import '../assets/css/dropDown.css';
 
 class DropDownContainer extends Component {
     constructor(props){
@@ -31,15 +32,19 @@ class DropDownContainer extends Component {
     }
 
     toggleModel(){
-        this.setState({
-            modelDropDownisHidden: !this.state.modelDropDownisHidden
-        })
+        if(this.state.make !== null){
+            this.setState({
+                modelDropDownisHidden: !this.state.modelDropDownisHidden
+            })
+        }
     }
 
     toggleYear(){
-        this.setState({
-            yearDropDownisHidden: !this.state.yearDropDownisHidden
-        })
+        if(this.state.make && this.state.model !== null){
+            this.setState({
+                yearDropDownisHidden: !this.state.yearDropDownisHidden
+            })
+        }
     }
 
     getEmptyData(){
@@ -94,26 +99,33 @@ class DropDownContainer extends Component {
         console.log('field to check: ' + nextFieldToCheck);
 
         var dataToCheck = this.getDataChild();
-        if(dataToCheck.constructor === Array){
-            var data = dataToCheck.map(String);
-        }else{
-            var data = Object.keys( this.getDataChild() );
+        
+        if(dataToCheck !== undefined){
+            if(dataToCheck.constructor === Array){
+                var data = dataToCheck.map(String);
+            }else{
+                var data = Object.keys( this.getDataChild() );
+            }
         }
-
+        
         return(
-            <div className="dropdownContainer">
-                <div className="dropdownMake">
-                    <button onClick={this.toggleMake}>Make</button>
-                    {!this.state.makeDropDownisHidden && <MakeDropDown makeSelect={this.catchMakeSelect}/>}
+            <div className="pageContainer">
+                <header className="header">Part Pig</header>
+                <div className="dropdownContainer">
+                    <div className="dropdownMake">
+                        <button onClick={this.toggleMake}>Make</button>
+                        {!this.state.makeDropDownisHidden && <MakeDropDown makeSelect={this.catchMakeSelect}/>}
+                    </div>
+                    <div className="dropdownModel">
+                        <button onClick={this.toggleModel}>Model</button>
+                        {!this.state.modelDropDownisHidden && <ModelDropDown modelSelect={this.catchModelSelect} selectedMake={this.state.make}/>}
+                    </div>
+                    <div className="dropdownYear">
+                        <button onClick={this.toggleYear}>Year</button>
+                        {!this.state.yearDropDownisHidden && <YearDropDown yearSelect={this.catchYearSelect} selectedMake={this.state.make} selectedModel={this.state.model}/>}
+                    </div>
                 </div>
-                <div className="dropdownModel">
-                    <button onClick={this.toggleModel}>Model</button>
-                    {!this.state.modelDropDownisHidden && <ModelDropDown modelSelect={this.catchModelSelect} selectedMake={this.state.make}/>}
-                </div>
-                <div className="dropdownYear">
-                    <button onClick={this.toggleYear}>Year</button>
-                    {!this.state.yearDropDownisHidden && <YearDropDown yearSelect={this.catchYearSelect} selectedMake={this.state.make} selectedModel={this.state.model}/>}
-                </div>
+                <footer>Team Part Pig Copyright 2018</footer>
             </div>
         )
     }

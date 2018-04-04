@@ -1,0 +1,15 @@
+body {
+    height: 100vh;
+    width: 80vw;
+    border: solid black 2px;
+    margin: 0 auto;
+}
+
+.header {
+    height: 8vh;
+    border: solid red 2px;
+}
+
+.dropdownContainer {
+    
+}
