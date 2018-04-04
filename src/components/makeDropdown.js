@@ -7,7 +7,6 @@ class MakeDropDown extends Component {
         super(props)
 
         this.makeRows = this.makeRows.bind(this)
-        console.log('hello', props);
     }
 
     makeRows(){
@@ -16,8 +15,6 @@ class MakeDropDown extends Component {
     }
 
     handleChildClick(label){
-        console.log('handle child click', label);
-        console.log('props log', this.props);
         this.props.makeSelect(label)
     }
 

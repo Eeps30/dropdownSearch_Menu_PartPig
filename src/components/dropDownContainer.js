@@ -20,6 +20,8 @@ class DropDownContainer extends Component {
         this.toggleModel = this.toggleModel.bind(this)
         this.toggleYear = this.toggleYear.bind(this)
         this.catchMakeSelect = this.catchMakeSelect.bind(this)
+        this.catchModelSelect = this.catchModelSelect.bind(this)
+        this.catchYearSelect = this.catchYearSelect.bind(this)
     }
 
     toggleMake(){
@@ -62,18 +64,29 @@ class DropDownContainer extends Component {
     }
 
     catchMakeSelect(selectedMake){
-        console.log('parent speaking', selectedMake);
         const caughtMake = selectedMake
         this.setState({
             make: caughtMake
         })
-        console.log(this.state.make);
+    }
+
+    catchModelSelect(selectedModel){
+        const caughtModel = selectedModel;
+        this.setState({
+            model: caughtModel
+        })
+    }
+
+    catchYearSelect(selectedYear){
+        const caughtYear = selectedYear;
+        this.setState({
+            year: caughtYear
+        })
     }
 
     render(){
 
         const make = this.state.make
-        console.log('new make', make);
 
         var nextFieldToCheck = this.getEmptyData();
         console.log('field to check: ' + nextFieldToCheck);
@@ -93,11 +106,11 @@ class DropDownContainer extends Component {
                 </div>
                 <div className="dropdownModel">
                     <button onClick={this.toggleModel}>Model</button>
-                    {!this.state.modelDropDownisHidden && <ModelDropDown/>}
+                    {!this.state.modelDropDownisHidden && <ModelDropDown modelSelect={this.catchModelSelect} selectedMake={this.state.make}/>}
                 </div>
                 <div className="dropdownYear">
                     <button onClick={this.toggleYear}>Year</button>
-                    {!this.state.yearDropDownisHidden && <YearDropDown/>}
+                    {!this.state.yearDropDownisHidden && <YearDropDown yearSelect={this.catchYearSelect} selectedMake={this.state.make} selectedModel={this.state.model}/>}
                 </div>
             </div>
         )
