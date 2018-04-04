@@ -60,6 +60,8 @@ class DropDownContainer extends Component {
         }else if(this.state.year === null){
             let yearsData = data.make[this.state.make].model[this.state.model].years
             return yearsData
+        }else{
+            console.log('All Fields Filled');
         }
     }
 
