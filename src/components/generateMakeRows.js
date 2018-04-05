@@ -2,9 +2,9 @@ import React from 'react';
 
 function generateMakeRow(props){
     return (
-        <div onClick={()=>{
+        <option onClick={()=>{
             props.callback()
-        }}>{props.label}</div>
+        }}>{props.label}</option>
     )
 }
 

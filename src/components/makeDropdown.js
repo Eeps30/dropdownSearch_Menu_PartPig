@@ -21,9 +21,9 @@ class MakeDropDown extends Component {
     render(){
 
         return(
-            <div>
+            <select>
                 {this.makeRows()}
-            </div>
+            </select>
         )
     }
 }

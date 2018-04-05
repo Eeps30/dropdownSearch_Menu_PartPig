@@ -119,16 +119,13 @@ class DropDownContainer extends Component {
                         </div>
                         <div className="buttonsContainer">
                             <div className="dropdownMake">
-                                <button onClick={this.toggleMake}>Choose Make</button>
-                                {!this.state.makeDropDownisHidden && <MakeDropDown makeSelect={this.catchMakeSelect}/>}
+                                <MakeDropDown makeSelect={this.catchMakeSelect}/>
                             </div>
                             <div className="dropdownModel">
-                                <button onClick={this.toggleModel}>Model</button>
-                                {!this.state.modelDropDownisHidden && <ModelDropDown modelSelect={this.catchModelSelect} selectedMake={this.state.make}/>}
+                                <ModelDropDown modelSelect={this.catchModelSelect} selectedMake={this.state.make}/>
                             </div>
                             <div className="dropdownYear">
-                                <button onClick={this.toggleYear}>Year</button>
-                                {!this.state.yearDropDownisHidden && <YearDropDown yearSelect={this.catchYearSelect} selectedMake={this.state.make} selectedModel={this.state.model}/>}
+                                <YearDropDown yearSelect={this.catchYearSelect} selectedMake={this.state.make} selectedModel={this.state.model}/>
                             </div>
                         </div>
                     </div>
