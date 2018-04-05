@@ -12,20 +12,27 @@ class YearDropdown extends Component {
     makeRows(props){
         const listOfYears = data.make[this.props.selectedMake].model[this.props.selectedModel].years
         const yearsString = listOfYears.map(String);
-        return yearsString.map( (item, index) => <GenerateRows key={index} callback={() => {this.handleChildClick(item)}} label={item}/>)
+        return yearsString.map( (item, index) => <GenerateRows key={index} callback={() => {this.handleChange(item)}} label={item}/>)
     }
 
-    handleChildClick(label){
+    handleChange(label){
         this.props.yearSelect(label)
     }
 
     render(){
-
-        return(
-            <div>
-                {this.makeRows()}
-            </div>
-        )
+        if(this.props.selectedModel === null){
+            return(
+                <select>
+                    <option>Year</option>
+                </select>
+            )
+        }else if(this.props.selectedModel !== null){
+            return(
+                <select onChange={(event) => this.handleChange ({value: event.target.value})}>
+                    {this.makeRows()}
+                </select>
+            )
+        }
     }
 }
 

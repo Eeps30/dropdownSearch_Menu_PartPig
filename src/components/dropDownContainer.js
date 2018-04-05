@@ -18,34 +18,9 @@ class DropDownContainer extends Component {
             model: null,
             year: null
         }
-        this.toggleMake = this.toggleMake.bind(this)
-        this.toggleModel = this.toggleModel.bind(this)
-        this.toggleYear = this.toggleYear.bind(this)
         this.catchMakeSelect = this.catchMakeSelect.bind(this)
         this.catchModelSelect = this.catchModelSelect.bind(this)
         this.catchYearSelect = this.catchYearSelect.bind(this)
-    }
-
-    toggleMake(){
-        this.setState({
-            makeDropDownisHidden: !this.state.makeDropDownisHidden
-        })
-    }
-
-    toggleModel(){
-        if(this.state.make !== null){
-            this.setState({
-                modelDropDownisHidden: !this.state.modelDropDownisHidden
-            })
-        }
-    }
-
-    toggleYear(){
-        if(this.state.make && this.state.model !== null){
-            this.setState({
-                yearDropDownisHidden: !this.state.yearDropDownisHidden
-            })
-        }
     }
 
     getEmptyData(){
@@ -58,35 +33,22 @@ class DropDownContainer extends Component {
         return false
     }
 
-    getDataChild(){
-        if(this.state.make === null){
-            return data.make;
-        }else if(this.state.model === null){
-            return data.make[this.state.make].model;
-        }else if(this.state.year === null){
-            let yearsData = data.make[this.state.make].model[this.state.model].years
-            return yearsData
-        }else{
-            console.log('All Fields Filled');
-        }
-    }
-
     catchMakeSelect(selectedMake){
-        const caughtMake = selectedMake
+        const caughtMake = selectedMake.value
         this.setState({
             make: caughtMake
         })
     }
 
     catchModelSelect(selectedModel){
-        const caughtModel = selectedModel;
+        const caughtModel = selectedModel.value
         this.setState({
             model: caughtModel
         })
     }
 
     catchYearSelect(selectedYear){
-        const caughtYear = selectedYear;
+        const caughtYear = selectedYear.value
         this.setState({
             year: caughtYear
         })
@@ -98,16 +60,6 @@ class DropDownContainer extends Component {
 
         var nextFieldToCheck = this.getEmptyData();
         console.log('field to check: ' + nextFieldToCheck);
-
-        var dataToCheck = this.getDataChild();
-        
-        if(dataToCheck !== undefined){
-            if(dataToCheck.constructor === Array){
-                var data = dataToCheck.map(String);
-            }else{
-                var data = Object.keys( this.getDataChild() );
-            }
-        }
         
         return(
             <div className="pageContainer">
@@ -118,15 +70,9 @@ class DropDownContainer extends Component {
                             <img src={mainLogo}/>
                         </div>
                         <div className="buttonsContainer">
-                            <div className="dropdownMake">
-                                <MakeDropDown makeSelect={this.catchMakeSelect}/>
-                            </div>
-                            <div className="dropdownModel">
-                                <ModelDropDown modelSelect={this.catchModelSelect} selectedMake={this.state.make}/>
-                            </div>
-                            <div className="dropdownYear">
-                                <YearDropDown yearSelect={this.catchYearSelect} selectedMake={this.state.make} selectedModel={this.state.model}/>
-                            </div>
+                            <MakeDropDown makeSelect={this.catchMakeSelect} currentMake={this.state.make}/>
+                            <ModelDropDown modelSelect={this.catchModelSelect} selectedMake={this.state.make}/>
+                            <YearDropDown yearSelect={this.catchYearSelect} selectedMake={this.state.make} selectedModel={this.state.model}/>
                         </div>
                     </div>
                 </div>

@@ -11,20 +11,27 @@ class ModelDropdown extends Component {
 
     makeRows(props){
         const listOfModels = Object.keys( data.make[this.props.selectedMake].model )
-        return listOfModels.map( (item, index) => <GenerateRows key={index} callback={() => {this.handleChildClick(item)}} label={item}/>)
+        return listOfModels.map( (item, index) => <GenerateRows key={index} callback={() => {this.handleChange(item)}} label={item}/>)
     }
 
-    handleChildClick(label){
+    handleChange(label){
         this.props.modelSelect(label)
     }
 
-    render(){
-
-        return(
-            <div>
-                {this.makeRows()}
-            </div>
-        )
+    render(props){
+        if(this.props.selectedMake === null){
+            return(
+                <select>
+                    <option>Model</option>
+                </select>
+            )
+        }else if(this.props.selectedMake !== null){
+            return(
+                <select onChange={(event) => this.handleChange ({value: event.target.value})}>
+                    {this.makeRows()}
+                </select>
+            )
+        }
     }
 }
 

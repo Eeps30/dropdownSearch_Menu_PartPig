@@ -11,17 +11,16 @@ class MakeDropDown extends Component {
 
     makeRows(){
         const listOfMakes = Object.keys( data.make );
-        return listOfMakes.map( (item, index) => <GenerateMakeRows key={index} callback={() => {this.handleChildClick(item)}} label={item}/>)
+        return listOfMakes.map( (item, index) => <GenerateMakeRows key={index} callback={(event) => {this.handleChange(item)}} label={item}/>)
     }
 
-    handleChildClick(label){
+    handleChange(label){
         this.props.makeSelect(label)
     }
 
     render(){
-
         return(
-            <select>
+            <select onChange={(event) => this.handleChange ({value: event.target.value})}>
                 {this.makeRows()}
             </select>
         )

@@ -3,7 +3,7 @@ import React from 'react';
 function generateMakeRow(props){
     return (
         <option onClick={()=>{
-            props.callback()
+            props.callback(item)
         }}>{props.label}</option>
     )
 }
