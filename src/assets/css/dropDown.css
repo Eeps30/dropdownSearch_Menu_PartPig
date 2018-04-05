@@ -3,13 +3,36 @@ body {
     width: 80vw;
     border: solid black 2px;
     margin: 0 auto;
+    background-color: cadetblue;
 }
 
 .header {
     height: 8vh;
     border: solid red 2px;
+    font-size: 65px;
+    text-decoration: underline;
 }
 
 .dropdownContainer {
-    
+    height: 85vh;
+    border: solid blue 2px;
+}
+
+.dropdownMenu {
+    height: 40vh;
+    border: solid green 2px;
+    background-color: #294e4c;
+    margin-top: 15vh;
+}
+
+.icon {
+    width: 50%;
+    height: 100%;
+    border: solid 2px limegreen;
+}
+
+.icon img {
+    margin: auto;
+    width: 15vw;
+    border: solid 2px limegreen;
 }

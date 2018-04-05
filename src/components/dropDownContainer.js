@@ -3,6 +3,7 @@ import MakeDropDown from './makeDropdown';
 import ModelDropDown from './modelDropdown';
 import YearDropDown from './yearDropdown';
 import data from './partsList';
+import mainLogo from '../assets/images/placeholderImage.png';
 import '../assets/css/dropDown.css';
 
 class DropDownContainer extends Component {
@@ -112,17 +113,22 @@ class DropDownContainer extends Component {
             <div className="pageContainer">
                 <header className="header">Part Pig</header>
                 <div className="dropdownContainer">
-                    <div className="dropdownMake">
-                        <button onClick={this.toggleMake}>Make</button>
-                        {!this.state.makeDropDownisHidden && <MakeDropDown makeSelect={this.catchMakeSelect}/>}
+                    <div className="dropdownMenu">
+                    <div className="icon">
+                        <img src={mainLogo}/>
                     </div>
-                    <div className="dropdownModel">
-                        <button onClick={this.toggleModel}>Model</button>
-                        {!this.state.modelDropDownisHidden && <ModelDropDown modelSelect={this.catchModelSelect} selectedMake={this.state.make}/>}
-                    </div>
-                    <div className="dropdownYear">
-                        <button onClick={this.toggleYear}>Year</button>
-                        {!this.state.yearDropDownisHidden && <YearDropDown yearSelect={this.catchYearSelect} selectedMake={this.state.make} selectedModel={this.state.model}/>}
+                        <div className="dropdownMake">
+                            <button onClick={this.toggleMake}>Make</button>
+                            {!this.state.makeDropDownisHidden && <MakeDropDown makeSelect={this.catchMakeSelect}/>}
+                        </div>
+                        <div className="dropdownModel">
+                            <button onClick={this.toggleModel}>Model</button>
+                            {!this.state.modelDropDownisHidden && <ModelDropDown modelSelect={this.catchModelSelect} selectedMake={this.state.make}/>}
+                        </div>
+                        <div className="dropdownYear">
+                            <button onClick={this.toggleYear}>Year</button>
+                            {!this.state.yearDropDownisHidden && <YearDropDown yearSelect={this.catchYearSelect} selectedMake={this.state.make} selectedModel={this.state.model}/>}
+                        </div>
                     </div>
                 </div>
                 <footer>Team Part Pig Copyright 2018</footer>
