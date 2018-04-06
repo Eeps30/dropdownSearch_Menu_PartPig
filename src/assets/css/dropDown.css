@@ -19,6 +19,7 @@ body {
 }
 
 .dropdownMenu {
+    position: relative;
     height: 40vh;
     border: solid green 2px;
     background-color: #294e4c;
@@ -40,16 +41,14 @@ body {
 }
 
 .buttonsContainer {
+    margin-top: 12%;
+    position: absolute;
     display: inline-block;
     border: solid yellow 2px;
-    height: 60%;
-    width: 59%;
+    height: 40%;
+    width: 60%;
 }
 
 .buttonsContainer div {
     float: left;
-}
-
-.buttonsContainer div > button {
-    
 }
